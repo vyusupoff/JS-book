@@ -1,18 +1,18 @@
 const roads = [
-	"Alice House-Bob House",
-	"Alice House-Cabin",
-	"Alice House-Post Office",
-	"Bob House-Town Hall",
-	"Daria House-Ernie House",
-	"Daria House-Town Hall",
-	"Ernie House-Grete House",
-	"Grete House-Farm",
-	"Grete House-Shop",
-	"Marketplace-Farm",
-	"Marketplace-Post Office",
-	"Marketplace-Shop",
-	"Marketplace-Town Hall",
-	"Shop-Town Hall",
+	"Дом Алисы-Дом Боба",
+	"Дом Алисы-Склад",
+	"Дом Алисы-Почта",
+	"Дом Боба-Ратуша",
+	"Дом Дарии-Дом Эрни",
+	"Дом Дарии-Ратуша",
+	"Дом Эрни-Дом Греты",
+	"Дом Греты-Ферма",
+	"Дом Греты-Магазин",
+	"Рынок-Ферма",
+	"Рынок-Почта",
+	"Рынок-Магазин",
+	"Рынок-Ратуша",
+	"Магазин-Ратуша",
 ]
 
 function buildGraph(edges) {
@@ -34,7 +34,6 @@ function buildGraph(edges) {
 }
 
 const roadGraph = buildGraph(roads)
-console.log(roadGraph) // remove
 
 class VillageState {
 	constructor(place, parcels) {
@@ -56,19 +55,23 @@ class VillageState {
 		}
 	}
 }
+let first = new VillageState("Почта", [
+	{ place: "Почта", address: "Дом Алисы" },
+])
+let next = first.move("Дом Алисы")
 
-// function runRobot(state, robot, memory) {
-//   for (let turn = 0;; turn++) {
-//     if (state.parcels.length == 0) {
-//       console.log(`Done in ${turn} turns`);
-//       break;
-//     }
-//     let action = robot(state, memory);
-//     state = state.move(action.direction);
-//     memory = action.memory;
-//     console.log(`Moved to ${action.direction}`);
-//   }
-// }
+function runRobot(state, robot, memory) {
+	for (let turn = 0; ; turn++) {
+		if (state.parcels.length == 0) {
+			console.log(`Done in ${turn} turns`)
+			break
+		}
+		let action = robot(state, memory)
+		state = state.move(action.direction)
+		memory = action.memory
+		console.log(`Moved to ${action.direction}`)
+	}
+}
 
 // function randomPick(array) {
 //   let choice = Math.floor(Math.random() * array.length);
@@ -89,14 +92,14 @@ class VillageState {
 //     } while (place == address);
 //     parcels.push({place, address});
 //   }
-//   return new VillageState("Post Office", parcels);
+//   return new VillageState("Почта", parcels);
 // };
 
 // var mailRoute = [
-//   "Alice's House", "Cabin", "Alice's House", "Bob's House",
-//   "Town Hall", "Daria's House", "Ernie's House",
-//   "Grete's House", "Shop", "Grete's House", "Farm",
-//   "Marketplace", "Post Office"
+//   "Дом Алисы", "Склад", "Дом Алисы", "Дом Боба",
+//   "Ратуша", "Дом Дарии", "Дом Эрни",
+//   "Дом Греты", "Магазин", "Дом Греты", "Ферма",
+//   "Рынок", "Почта"
 // ];
 
 // function routeRobot(state, memory) {
