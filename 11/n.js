@@ -1,5 +1,5 @@
 // Run code here in the context of Chapter 11
-import { bigOak } from "./crow-tech"
+import { bigOak } from "./crow-tech.js"
 
 bigOak.readStorage("food caches", (caches) => {
 	let firstCache = caches[0]
