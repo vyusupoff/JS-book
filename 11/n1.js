@@ -22,3 +22,4 @@ function storage(nest, name) {
 }
 storage(bigOak, "enemies").then((value) => console.log("Получено", value))
 // findInStorage(bigOak, "events on 2017-12-21").then(console.log)
+requestAnimationFrame()
